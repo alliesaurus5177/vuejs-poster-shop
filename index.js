@@ -1,3 +1,5 @@
+//Hi I'm the server stuffs 
+
 var express = require('express');
 var app = express();
 var path = require('path');
