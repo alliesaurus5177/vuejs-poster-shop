@@ -7,15 +7,20 @@ new Vue({
 		items: [],
 		cart: [],
 		search: '',
+		lastSearch: '',
+		loading: false, 
 	},
 	methods:{
 		onSubmit: function(){
 			//console.log(this.$http);
+			this.items = []; //empty out items while search loads
+			this.loading = true; 
 			this.$http
-			.get('/search/'.concat('this.search'))
-			.then(function(res){ //res=result
-				console.log(res.data);
+			.get('/search/'.concat(this.search))
+			.then(function(res) {
+				this.lastSearch = this.search;
 				this.items = res.data;
+				this.loading = false; 
 			});
 		},
 		addItem: function(index) {
